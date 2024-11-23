@@ -8,8 +8,38 @@ from fpdf import FPDF
 from fpdf import *
 import plotly.figure_factory as ff
 
-# Charger les données
-data = pd.read_csv("LCM-Data.csv")  # Remplacez par votre fichier CSV
+data['Date'] = pd.to_datetime(data['Date'], errors='coerce')  # Convertit les dates au format datetime
+
+
+data = pd.DataFrame({
+    'Type de campagne': ['Picnic', 'Journee de Consultation Camp Penal', 'Campagne de Tchicky', 
+                         'Photos Consultations camps penal', 'Photos Campagne de Tchicky', 
+                         'Affiche Dons Pouponnieres', 'Don de sang', 'Octobre Rose', 
+                         'Octobre Rose', 'Don de sang', 'Don de sang'],
+    'Date': ['2024-07-20', '2024-08-10', '2024-08-13', '2024-08-19', '2024-08-21', 
+             '2024-09-16', '2024-09-25', '2024-10-08', '2024-10-19', '2024-10-29', '2024-11-08'],
+    'Finish': ['2024-07-16', '2024-08-14', '2024-08-17', '2024-08-14', '2024-08-17', 
+             '2024-09-28', '2024-09-25', '2024-10-08', '2024-10-20', '2024-11-09', '2024-11-09'],
+    'Canal': ['Instagram/Facebook'] * 11,
+    'Objectif': [None, 'Informer/Donation', 'Informer', 'Informer', 'Informer', 
+                 'Informer/Donation', 'Sensibiliser', 'Informer', 'Informer', 'Informer', 'Sensibiliser'],
+    'Likes': [161, 54, 21, 136, 183, 25, 32, 42, 19, 63, 47],
+    'Commentaires': [2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+    'Partages': [9, 22, 1, 2, 1, 9, 14, 14, 1, 67, 6],
+    'Save': [5, 0, 0, 1, 2, 0, 0, 0, 0, 2, 1],
+    'Account Reached': [1677, 2225, 403, 1333, 852, 829, 1811, 1266, 2, 6023, 1369],
+    'Followers ': [91.7, 22.4, 60.2, 52, 86.3, 88.5, 14, 26, 94.7, None, None],
+    'Non-Followers': [8.3, 77.6, 39.8, 48, 13.7, 11.5, 86, 74, 5.3, None, None],
+    'Profile Activity': [78, 56, 4, 14, 35, 5, 14, 16, 1, None, None],
+    'PA-Visits': [72, 5, 3, 14, 30, 4, 14, 14, 1, None, None],
+    'PA-Follows': [5, 1, 1, 0, 1, 0, 0, 2, 0, None, None],
+    'PA-External Link Tap': [1, 0, 0, 0, 4, 1, None, 2, 0, None, None],
+    'Observations': ['Followers ', "Le fait qu'on aie touche 77.6% de Non Followers. 22 Shares", None, 
+                     "Plus cest des photos, plus on reach people", '185 Account Engaged/852Account Reached', 
+                     'Non Followers ', 'Non Followers Reached', None, None, None, '1H45M2S'],
+    'Budget': [None, None, None, None, None, None, None, None, None, None, None]
+})
+
 
 # Configuration de la page avec un fond sombre
 st.set_page_config(
@@ -64,40 +94,6 @@ with col2:
 
 st.markdown('<hr style="border: 1px solid #46B3B3;">', unsafe_allow_html=True)
 
-
-# Assurez-vous que les dates sont converties correctement
-data['Date'] = pd.to_datetime(data['Date'], errors='coerce')  # Convertit les dates au format datetime
-
-
-# Exemple de votre dataset
-data = pd.DataFrame({
-    'Type de campagne': ['Picnic', 'Journee de Consultation Camp Penal', 'Campagne de Tchicky', 
-                         'Photos Consultations camps penal', 'Photos Campagne de Tchicky', 
-                         'Affiche Dons Pouponnieres', 'Don de sang', 'Octobre Rose', 
-                         'Octobre Rose', 'Don de sang', 'Don de sang'],
-    'Date': ['2024-07-20', '2024-08-10', '2024-08-13', '2024-08-19', '2024-08-21', 
-             '2024-09-16', '2024-09-25', '2024-10-08', '2024-10-19', '2024-10-29', '2024-11-08'],
-    'Finish': ['2024-07-16', '2024-08-14', '2024-08-17', '2024-08-14', '2024-08-17', 
-             '2024-09-28', '2024-09-25', '2024-10-08', '2024-10-20', '2024-11-09', '2024-11-09'],
-    'Canal': ['Instagram/Facebook'] * 11,
-    'Objectif': [None, 'Informer/Donation', 'Informer', 'Informer', 'Informer', 
-                 'Informer/Donation', 'Sensibiliser', 'Informer', 'Informer', 'Informer', 'Sensibiliser'],
-    'Likes': [161, 54, 21, 136, 183, 25, 32, 42, 19, 63, 47],
-    'Commentaires': [2, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    'Partages': [9, 22, 1, 2, 1, 9, 14, 14, 1, 67, 6],
-    'Save': [5, 0, 0, 1, 2, 0, 0, 0, 0, 2, 1],
-    'Account Reached': [1677, 2225, 403, 1333, 852, 829, 1811, 1266, 2, 6023, 1369],
-    'Followers ': [91.7, 22.4, 60.2, 52, 86.3, 88.5, 14, 26, 94.7, None, None],
-    'Non-Followers': [8.3, 77.6, 39.8, 48, 13.7, 11.5, 86, 74, 5.3, None, None],
-    'Profile Activity': [78, 56, 4, 14, 35, 5, 14, 16, 1, None, None],
-    'PA-Visits': [72, 5, 3, 14, 30, 4, 14, 14, 1, None, None],
-    'PA-Follows': [5, 1, 1, 0, 1, 0, 0, 2, 0, None, None],
-    'PA-External Link Tap': [1, 0, 0, 0, 4, 1, None, 2, 0, None, None],
-    'Observations': ['Followers ', "Le fait qu'on aie touche 77.6% de Non Followers. 22 Shares", None, 
-                     "Plus cest des photos, plus on reach people", '185 Account Engaged/852Account Reached', 
-                     'Non Followers ', 'Non Followers Reached', None, None, None, '1H45M2S'],
-    'Budget': [None, None, None, None, None, None, None, None, None, None, None]
-})
 
 # Convertir la colonne 'Date' en datetime
 data['Date'] = pd.to_datetime(data['Date'], format='%Y-%m-%d')
