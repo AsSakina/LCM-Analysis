@@ -15,34 +15,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# Fonction pour générer un PDF
-def generate_pdf():
-    from fpdf import FPDF
-    
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font("Arial", size=12)
-    pdf.set_text_color(55, 107, 107)  # Couleur primaire (en RGB)
-    pdf.cell(200, 10, txt="Rapport d'Analyse - Le Corpus Médical", ln=True, align="C")
-    pdf.ln(10)
-    pdf.multi_cell(0, 10, "Ce document contient un résumé des analyses des données des campagnes.")
-    pdf.ln(10)
-    pdf.cell(200, 10, txt="Graphiques disponibles dans l'application.", ln=True, align="L")
-    pdf_output = BytesIO()
-    pdf.output(pdf_output)
-    pdf_output.seek(0)
-    return pdf_output
-
-# Section du logo et du bouton PDF
-st.markdown(
-    """
-    <style>
-        .main {background-color: #274C67;} /* Couleur du fond principal */
-        .reportview-container {color: #46B3B3;} /* Texte en couleur charte */
-    </style>
-    """, unsafe_allow_html=True
-)
-
 
 
 data = pd.DataFrame({
@@ -396,79 +368,6 @@ st.markdown(
 
 st.write("Le public ciblé pour la Location de Matériels Médicaux se compose majoritairement de femmes (53.9%), avec une forte concentration dans la tranche d'âge 25-34 ans (50.9%). Il faudra prévoir de relancer le post pour atteindre davantage de personnes de cette catégorie.")
 st.markdown('<hr style="border: 1px solid #46B3B3;">', unsafe_allow_html=True)
-
-# Titre de la page
-st.markdown("<h1 style='color: #46B3B3;'>Téléchargement des Documents de la Commission Communication</h1>", unsafe_allow_html=True)
-
-# Texte explicatif
-#st.markdown(
-    #"""
-    #La Commission Communication de **Le Corpus Médical**:
-    
-    #- **Manuel de procédures** : Structurant les normes et lignes directrices de communication.
-    #- **Organigramme** : Définissant les rôles et les responsabilités de chaque membre.
-    #- **Document Descriptif des Rôles** : Clarifiant les missions de chaque poste (Président, Vice-président, Community Manager, Créateurs Visuels, etc.).
-    #- **Document explicatif du processus de demande de publication**.
-    #- **Modèle de demande de publication**.
-    #- **Document de Marketing Humanitaire de la Stratégie Globale**.
-    #- **Stratégie Marketing 2**.
-    
-    #Vous pouvez télécharger les documents ci-dessous.
-    #"""
-#)
-
-
-# Créer des liens de téléchargement pour les PDF
-pdf_documents = {
-    "Organigramme": "Desktop/lcm/COM_LCM_.pdf",
-    "Stratégie Marketing": "Desktop/lcm/LCMAnalysisStratégieMHumanLeCorpusMédical.pdf",
-    "Manuel Procédures": "Desktop/lcm/ManueldeProcédure.pdf",
-    "Document Descriptif Rôles": "Desktop/lcm/PostesàpourvoirCommissionCommunicationsLCMFeuille1.pdf",
-    "Modèle Demande Publication": "Desktop/lcm/DemandedePublication_LCM.pdf",
-    "Marketing Humanitaire": "Desktop/lcm/MarketingHumanitaire_LeCorpusMédical.pdf",
-    "Demande Publication": "Desktop/lcm/LCM-Analysis/GuidedeDemandedePublicationsurlesRéseaux.pdf",
-}
-
-# Ajouter du CSS personnalisé pour styliser le bouton
-st.markdown(
-    """
-    <style>
-    div.stButton > button {
-        background-color: #46B3B3; /* Couleur d'arrière-plan */
-        color: #FFFFFF; /* Couleur du texte */
-        border-radius: 8px;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        font-family: 'Arial', sans-serif;
-        font-weight: bold;
-        cursor: pointer;
-    }
-    div.stButton > button:hover {
-        background-color: #38A4A4; /* Couleur d'arrière-plan au survol */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Sélection dans un menu déroulant
-selected_doc = st.selectbox(
-    "Sélectionnez un document à télécharger :",
-    options=list(pdf_documents.keys()),
-)
-
-# Afficher le bouton de téléchargement
-if selected_doc:
-    file_path = pdf_documents[selected_doc]
-    with open(file_path, "rb") as file:
-        st.download_button(
-            label="Télécharger",  # Bouton réduit à "Télécharger"
-            data=file.read(),
-            file_name=f"{selected_doc}.pdf",
-            mime="application/pdf"
-        )
-
 
 
 # Appliquer le style global
