@@ -78,7 +78,7 @@ data = pd.DataFrame({
 
 col1, col2 = st.columns([1, 4])
 with col1:
-    st.image("2.png", width=120)  # Chemin vers le logo local
+    st.image("Desktop/lcm/2.png", width=120)  # Chemin vers le logo local
 with col2:
     st.markdown("<h1 style='color: #46B3B3;'>Le Corpus Médical - Analyse</h1>", unsafe_allow_html=True)
     pdf_file = generate_pdf()
@@ -420,13 +420,13 @@ st.markdown("<h1 style='color: #46B3B3;'>Téléchargement des Documents de la Co
 
 # Créer des liens de téléchargement pour les PDF
 pdf_documents = {
-    "Organigramme": "COM_LCM_.pdf",
-    "Stratégie Marketing": "LCMAnalysisStratégieMHumanLeCorpusMédical.pdf",
-    "Manuel Procédures": "ManueldeProcédure.pdf",
-    "Document Descriptif Rôles": "PostesàpourvoirCommissionCommunicationsLCMFeuille1.pdf",
-    "Modèle Demande Publication": "DemandedePublication_LCM.pdf",
-    "Marketing Humanitaire": "MarketingHumanitaire_LeCorpusMédical.pdf",
-    "Demande Publication": "LCM-Analysis/GuidedeDemandedePublicationsurlesRéseaux.pdf",
+    "Organigramme": "Desktop/lcm/COM_LCM_.pdf",
+    "Stratégie Marketing": "Desktop/lcm/LCMAnalysisStratégieMHumanLeCorpusMédical.pdf",
+    "Manuel Procédures": "Desktop/lcm/ManueldeProcédure.pdf",
+    "Document Descriptif Rôles": "Desktop/lcm/PostesàpourvoirCommissionCommunicationsLCMFeuille1.pdf",
+    "Modèle Demande Publication": "Desktop/lcm/DemandedePublication_LCM.pdf",
+    "Marketing Humanitaire": "Desktop/lcm/MarketingHumanitaire_LeCorpusMédical.pdf",
+    "Demande Publication": "Desktop/lcm/LCM-Analysis/GuidedeDemandedePublicationsurlesRéseaux.pdf",
 }
 
 # Ajouter du CSS personnalisé pour styliser le bouton
