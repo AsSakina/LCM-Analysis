@@ -50,14 +50,14 @@ data = pd.DataFrame({
 
 col1, col2 = st.columns([1, 4])
 with col1:
-    st.image("Desktop/lcm/2.png", width=120)  # Chemin vers le logo local
+    st.image("Desktop/lcm/2.png", width=120)  
 with col2:
     st.markdown("<h1 style='color: #46B3B3;'>Le Corpus Médical - Analyse</h1>", unsafe_allow_html=True)
     
 
 
 st.markdown('<hr style="border: 1px solid #46B3B3;">', unsafe_allow_html=True)
-data['Date'] = pd.to_datetime(data['Date'], errors='coerce')  # Convertit les dates au format datetime
+data['Date'] = pd.to_datetime(data['Date'], errors='coerce')  
 
 
 # Convertir la colonne 'Date' en datetime
@@ -77,8 +77,8 @@ df_gantt = []
 colors = {
     'Informer': '#46B3B3',
     'Informer/Donation': '#274C67',
-    'Sensibiliser': '#FF6347',  # Exemple de couleur différente pour "Sensibiliser"
-    'Sans Objectif': '#FFD700'  # Couleur pour les campagnes sans objectif spécifié
+    'Sensibiliser': '#FF6347',  
+    'Sans Objectif': '#FFD700'  
 }
 
 for _, row in data.iterrows():
@@ -425,7 +425,7 @@ st.markdown(
 )
 
 # URL ou chemin vers la vidéo
-video_file = "Desktop/lcm/LCM.mov"  # Remplacez par le chemin réel du fichier vidéo
+video_file = "Desktop/lcm/LCM.mov"  
 
 # Intégration de la vidéo
 st.video(video_file)
