@@ -53,13 +53,7 @@ with col1:
     st.image("Desktop/lcm/2.png", width=120)  # Chemin vers le logo local
 with col2:
     st.markdown("<h1 style='color: #46B3B3;'>Le Corpus Médical - Analyse</h1>", unsafe_allow_html=True)
-    pdf_file = generate_pdf()
-    st.download_button(
-        label="📄 Télécharger le Rapport PDF",
-        data=pdf_file,
-        file_name="Rapport_Analyse_LeCorpusMedical.pdf",
-        mime="application/pdf"
-    )
+    
 
 
 st.markdown('<hr style="border: 1px solid #46B3B3;">', unsafe_allow_html=True)
