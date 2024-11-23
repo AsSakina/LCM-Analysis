@@ -532,7 +532,7 @@ st.markdown(
 )
 
 # URL ou chemin vers la vidéo
-video_file = "LCM.mov"  # Remplacez par le chemin réel du fichier vidéo
+video_file = "Desktop/lcm/LCM.mov"  # Remplacez par le chemin réel du fichier vidéo
 
 # Intégration de la vidéo
 st.video(video_file)
